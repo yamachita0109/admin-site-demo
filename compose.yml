@@ -1,0 +1,30 @@
+services:
+  web:
+    container_name: admin_site_demo_app
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    ports:
+      - ${RAILS_PORT}:3000
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db
+  db:
+    container_name: admin_site_demo_db
+    image: mysql:8.0
+    volumes:
+      - db-data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DB}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      TZ: "Asia/Tokyo"
+    ports:
+      - "${MYSQL_POOT}:3306"
+volumes:
+  db-data:
