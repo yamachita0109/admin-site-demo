@@ -14,5 +14,5 @@
 cp .env.sample .env
 docker compose up -d --build
 docker compose exec web rails db:create
-open http://localhost:3001/
+open http://localhost:3003/
 ```
