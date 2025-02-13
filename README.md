@@ -16,3 +16,7 @@ docker compose up -d --build
 docker compose exec web rails db:create
 open http://localhost:3003/
 ```
+
+
+rails c
+Admin.create(email: "yamachita0109@gmail.com", password: "nekodaisuki", password_confirmation: "nekodaisuki")

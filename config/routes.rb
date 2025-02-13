@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
-  devise_for :admins, controllers: {
-    sessions:      'admins/sessions',
-    passwords:     'admins/passwords',
-    registrations: 'admins/registrations'
+  devise_for :admin, controllers: {
+    sessions:      'admin/sessions',
+    passwords:     'admin/passwords',
+    registrations: 'admin/registrations'
   }
-  devise_for :users, controllers: {
-    sessions:      'users/sessions',
-    passwords:     'users/passwords',
-    registrations: 'users/registrations'
+  namespace :admin do
+    resources :writers, only: [:index, :edit, :update]
+  end
+
+  devise_for :writer, controllers: {
+    sessions:      'writer/sessions',
+    passwords:     'writer/passwords',
+    registrations: 'writer/registrations'
   }
-  # root to: 'home#index'
+
+  root to: 'writer/sessions#new'
 end
