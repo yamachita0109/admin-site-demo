@@ -17,6 +17,23 @@ docker compose exec web rails db:create
 open http://localhost:3003/
 ```
 
+## Design
 
+### Component
+
+https://flowbite.com/blocks/
+
+### Color
+
+| Case | Color code |
+|-------------|----------|
+| submit        | #FF4500    |
+| hover        | #E03E00    |
+
+
+## Tips
+
+```sh
 rails c
-Admin.create(email: "yamachita0109@gmail.com", password: "nekodaisuki", password_confirmation: "nekodaisuki")
+Admin.create(email: "email", password: "password", password_confirmation: "password")
+```
