@@ -58,4 +58,4 @@ end
 
 gem 'devise'
 
-gem "tailwindcss-rails", "~> 4.0"
+gem "tailwindcss-rails", "~> 4.1"
