@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     registrations: 'admin/registrations'
   }
   namespace :admin do
-    resources :writers, only: [:index, :edit, :update]
+    resources :writers, only: [:index, :new, :create, :edit, :update]
   end
 
   devise_for :writer, controllers: {

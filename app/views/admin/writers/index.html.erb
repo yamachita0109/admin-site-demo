@@ -26,60 +26,46 @@
       </form>
     </div>
 
-    <%# list %>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50">
-                <tr>
-                    <th scope="col" class="px-6 py-3">
-                        氏名
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        メールアドレス
-                    </th>
-                    <th scope="col" class="px-6 py-3">
-                        <span class="sr-only">詳細</span>
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                        Apple MacBook Pro 17"
-                    </th>
-                    <td class="px-6 py-4">
-                        Silver
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-[#FF4500] dark:text-blue-500 hover:underline">Edit</a>
-                    </td>
-                </tr>
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Microsoft Surface Pro
-                    </th>
-                    <td class="px-6 py-4">
-                        White
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-[#FF4500] dark:text-blue-500 hover:underline">Edit</a>
-                    </td>
-                </tr>
-                <tr class="bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-600">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        Magic Mouse 2
-                    </th>
-                    <td class="px-6 py-4">
-                        Black
-                    </td>
-                    <td class="px-6 py-4 text-right">
-                        <a href="#" class="font-medium text-[#FF4500] dark:text-blue-500 hover:underline">Edit</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+    <%# btn group %>
+    <div class="p-4 mb-4">
+      <div class="w-full text-right m-2">
+        <a href="<%= new_admin_writer_path %>" class="text-white bg-[#FF4500] hover:bg-[#E03E00] focus:ring-4 focus:outline-none focus:ring-[#FF4500] font-medium rounded-lg text-sm w-40 px-5 py-2.5 text-center">作成する</a>
+      </div>
     </div>
 
+    <%# list %>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th scope="col" class="px-6 py-3">
+              メールアドレス
+            </th>
+            <th scope="col" class="px-6 py-3">
+              氏名
+            </th>
+            <th scope="col" class="px-6 py-3">
+              作成日時
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @writers.each do |writer| %>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50">
+              <td class="px-6 py-4">
+                <%= writer.email %>
+              </td>
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
+                <%= writer.writer_profile&.profile_text || '' %>
+              </th>
+              <td class="px-6 py-4">
+                <%= writer.created_at %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
 
   </div>
 </div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_02_13_052431) do
+ActiveRecord::Schema[8.0].define(version: 2025_02_27_052239) do
   create_table "admins", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -35,6 +35,25 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_13_052431) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "writer_profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "writer_id", null: false
+    t.text "profile_text"
+    t.text "icon_image"
+    t.text "header_image"
+    t.string "x_id"
+    t.string "facebook_id"
+    t.string "instagram_id"
+    t.string "tiktok_id"
+    t.string "youtube_id"
+    t.string "discord_id"
+    t.string "site_url"
+    t.boolean "is_deleted", default: false, null: false
+    t.string "wordpress_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["writer_id"], name: "index_writer_profiles_on_writer_id"
+  end
+
   create_table "writers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -46,4 +65,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_02_13_052431) do
     t.index ["email"], name: "index_writers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_writers_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "writer_profiles", "writers"
 end

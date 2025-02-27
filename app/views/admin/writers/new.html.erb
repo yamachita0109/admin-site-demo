@@ -1,0 +1,69 @@
+
+<%# sidebar %>
+<%= render 'admin/shared/sidebar' %>
+
+<%# main %>
+<div class="p-4 sm:ml-64">
+  <div class="p-4 mt-14">
+    <h2 class="text-2xl font-extrabold dark:text-white mb-4">ライター作成</h2>
+
+    <%# form %>
+    <section class="bg-white dark:bg-gray-900">
+      <div class="py-8 lg:py-16 px-4 mx-auto max-w-screen-md">
+        <%= form_with model: @writer, url: admin_writers_path, method: :post, data: { turbo: false }, class: "space-y-8" do |f| %>
+          <div>
+            <%= f.label :email, "メールアドレス", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= f.email_field :email, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-[#FF4500] focus:border-[#FF4500] block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#FF4500] dark:focus:border-[#FF4500] dark:shadow-sm-light", placeholder: "name@example.com", required: true %>
+          </div>
+
+          <div>
+            <%= f.label :password, "パスワード", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= f.password_field :password, class: "block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-[#FF4500] focus:border-[#FF4500] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#FF4500] dark:focus:border-[#FF4500] dark:shadow-sm-light", required: true %>
+          </div>
+
+          <div>
+            <%= f.label :password_confirmation, "パスワード確認", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+            <%= f.password_field :password_confirmation, class: "block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-[#FF4500] focus:border-[#FF4500] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#FF4500] dark:focus:border-[#FF4500] dark:shadow-sm-light", required: true %>
+          </div>
+
+          <%= f.fields_for :writer_profile do |profile_form| %>
+            <div>
+              <%= profile_form.label :profile_text, "プロフィールテキスト", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400" %>
+              <%= profile_form.text_area :profile_text, rows: 6, class: "block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg shadow-sm border border-gray-300 focus:ring-[#FF4500] focus:border-[#FF4500] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#FF4500] dark:focus:border-[#FF4500]", placeholder: "自己紹介を記入してください..." %>
+            </div>
+
+            <div>
+              <%= profile_form.label :icon_image, "アイコン画像", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= profile_form.text_field :icon_image, class: "block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-[#FF4500] focus:border-[#FF4500] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#FF4500] dark:focus:border-[#FF4500] dark:shadow-sm-light" %>
+            </div>
+
+            <div>
+              <%= profile_form.label :x_id, "X(Twitter) ID", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= profile_form.text_field :x_id, class: "block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-[#FF4500] focus:border-[#FF4500] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#FF4500] dark:focus:border-[#FF4500] dark:shadow-sm-light" %>
+            </div>
+
+            <div>
+              <%= profile_form.label :facebook_id, "Facebook ID", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= profile_form.text_field :facebook_id, class: "block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-[#FF4500] focus:border-[#FF4500] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#FF4500] dark:focus:border-[#FF4500] dark:shadow-sm-light" %>
+            </div>
+
+            <div>
+              <%= profile_form.label :instagram_id, "Instagram ID", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= profile_form.text_field :instagram_id, class: "block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-[#FF4500] focus:border-[#FF4500] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#FF4500] dark:focus:border-[#FF4500] dark:shadow-sm-light" %>
+            </div>
+
+            <div>
+              <%= profile_form.label :site_url, "ホームページURL", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" %>
+              <%= profile_form.text_field :site_url, class: "block p-3 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 shadow-sm focus:ring-[#FF4500] focus:border-[#FF4500] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-[#FF4500] dark:focus:border-[#FF4500] dark:shadow-sm-light" %>
+            </div>
+          <% end %>
+
+          <button type="submit" class="text-white bg-[#FF4500] hover:bg-[#E03E00] focus:ring-4 focus:outline-none focus:ring-[#FF4500] font-medium rounded-lg text-sm w-40 px-5 py-2.5 text-center">
+            作成する
+          </button>
+        <% end %>
+      </div>
+    </section>
+
+  </div>
+</div>
